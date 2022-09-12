@@ -4,20 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capstone Project</title>
-    <link rel="sytlesheet" href="styles.css"/>
+    <title>Rate Your Workout</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-    <h1>Need an Exercise?</h1>
-    <p>Pick A Body Part: Select any one:</p>
-    <select name = "dropdown">
+    <header>
+        <h1>Rate Your Workout</h1>
+    </header>
+    <main>
+
     <form>
-        <title>Select One</title>
-        <option value = "Lower Body" selected>Lower Body</option>
-        <option value = "Upper Body">Upper Body</option>
-        <option value = "Core">Core</option>
-     </select>
-  </form>
-       
+        <h3>Add A Workout</h3>
+        <input 
+            type='text'
+            id="name"
+            placeholder="What's the name?"/>
+        <input 
+            type='text'
+            id="rate"
+            placeholder='Rate this workout'/>
+        <input 
+            type='text'
+            id="img"
+            placeholder='Paste an image URL'/>
+        <button>add workout</button>
+    </form>
+
+    <section id="workout-list"></section>
+
+    <div id="divRating" class="rating">
+        <span id="spanRatingExcellent" title="Excellent">☆</span>
+        <span id="spanRatingGood" title="Good">☆</span>
+        <span id="spanRatingFair" title="Fair">☆</span>
+        <span id="spanRatingPoor" title="Poor">☆</span>
+        <span id="spanRatingAwful" title="Awful">☆</span>
+      </div>
+
+    </main>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="client.js"></script>
 </body>
 </html>
