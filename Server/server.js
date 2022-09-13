@@ -12,13 +12,13 @@ app.use(cors())
     getWorkouts, 
     deleteWorkout, 
     createWorkout, 
-    updateWorkout
+    addRating
 } = require("./controller.js")
 
 app.get('/api/workouts', getWorkouts)
 app.delete('/api/workouts/:id', deleteWorkout)
 app.post('/api/workouts', createWorkout)
-app.put('/api/workouts/:id', updateWorkout)
+app.put('/api/workouts/:id', addRating)
 
 
 app.listen(4004, () => console.log('Server running on port 4004'))

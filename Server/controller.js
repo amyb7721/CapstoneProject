@@ -24,27 +24,23 @@ module.exports = {
         res.status(200).send(workouts)
         globalId++
     },
-    updateWorkout: (req, res) => {
+    addRating: (req, res) => {
+        console.log('hit update workout')
         let {id} = req.params
-        let {type} = req.body
+        let {rating} = req.body
         let index = workouts.findIndex((workout) => {
             return +workout.id === +id
             }) 
-         if (workouts[index].rate <= 5 && type === 'minus') {
-             workouts[index].rate = 0
-                res.status(200).send(workouts)
-            } else if (type === 'plus') {
-                workouts[index].rate += 5
-                res.status(200).send(workouts)
-            } else if (type === 'minus') {
-                workouts[index].rate -= 5
-                res.status(200).send(workouts)
-            } else {
-                res.sendStatus(400)
-            }
+        
+        //  update workout rating to the rating that im destrucring from body
+        let newRating = {
+           
+        }
+        workouts.push(newRating)
+        res.status(200).send(workouts)
         } 
     }
     
-        
+        // 
     
 
