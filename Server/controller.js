@@ -28,19 +28,17 @@ module.exports = {
         console.log('hit update workout')
         let {id} = req.params
         let {rating} = req.body
+        console.log(id)
+        console.log(rating)
         let index = workouts.findIndex((workout) => {
             return +workout.id === +id
-            }) 
-        
-        //  update workout rating to the rating that im destrucring from body
-        let newRating = {
-           
-        }
-        workouts.push(newRating)
+        }) 
+        let workout = workouts[index]
+        workout.rate = +rating
         res.status(200).send(workouts)
         } 
     }
     
-        // 
+
     
 

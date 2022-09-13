@@ -32,26 +32,45 @@ function submitHandler(e) {
 }
 
 function createsWorkoutPic(workout) {
-  console.log(workout)
     const workoutPic = document.createElement('div')
     workoutPic.classList.add('workout-pic')
+    const rating = workout.rate
 
-    workoutPic.innerHTML = `<img alt='workout image' src=${workout.imageURL} class="workout-cover-image"/>
-    <p class="name">${workout.name}</p>
-    <div id="divRating" class="rating" >
-  <span id="spanRatingExcellent" onclick="addRating(${workout.id}, 5)" title="Excellent">☆</span>
-  <span id="spanRatingGood" onclick="addRating(${workout.id}, 4)" title="Good">☆</span>
-  <span id="spanRatingFair" onclick="addRating(${workout.id}, 3)" title="Fair">☆</span>
-  <span id="spanRatingPoor" onclick="addRating(${workout.id}, 2)" title="Poor">☆</span>
-  <span id="spanRatingAwful" onclick="addRating(${workout.id}, 1)" title="Awful">☆</span>
-</div>
-
-    <button onclick="deleteWorkout(${workout.id})">delete</button>
-     `
-
+    workoutPic.innerHTML = `
+        <img alt='workout image' src=${workout.imageURL} class="workout-cover-image"/>
+        <p class="name">${workout.name}</p>
+        <div class="rating" >
+            <span class="spanRatingExcellent ${rating === 5 ? 'rated' : ''}" onclick="selectRating(event)" workoutid="${workout.id}" rating="5" title="Excellent">☆</span>
+            <span class="spanRatingGood ${rating === 4 ? 'rated' : ''}" onclick="selectRating(event)" workoutid="${workout.id}" rating="4" title="Good">☆</span>
+            <span class="spanRatingFair ${rating === 3 ? 'rated' : ''}" onclick="selectRating(event)" workoutid="${workout.id}" rating="3" title="Fair">☆</span>
+            <span class="spanRatingPoor ${rating === 2 ? 'rated' : ''}" onclick="selectRating(event)" workoutid="${workout.id}" rating="2" title="Poor">☆</span>
+            <span class="spanRatingAwful ${rating === 1 ? 'rated' : ''}" onclick="selectRating(event)" workoutid="${workout.id}" rating="1" title="Awful">☆</span>
+        </div>
+        <button onclick="deleteWorkout(${workout.id})">delete</button>
+    `
 
     workoutList.appendChild(workoutPic)
+}
+
+function selectRating(event) {
     
+    const rating = event.target.getAttribute('rating')
+    const workoutId = event.target.getAttribute('workoutid')
+
+    if (event.target.tagName.toLowerCase() !== 'span') return
+
+    if (event.target.classList.contains('rated')) {
+        event.target.classList.remove('rated')
+    } else {
+        Array.prototype.forEach.call(document.getElementsByClassName('rated'), function(el) {
+            if (el.getAttribute('workoutid') === workoutId) {
+                el.classList.remove('rated')
+            }
+        })
+        event.target.classList.add('rated')
+    }
+
+    addRating(workoutId, rating)
 }
 
 function displayWorkouts(arr) {
@@ -64,39 +83,6 @@ function displayWorkouts(arr) {
 form.addEventListener('submit', submitHandler)
 
 getAllWorkouts()
-
-
-
-
-document.getElementById('divRating').addEventListener('click', addRating)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   if (event.target.tagName.toLowerCase() !== 'span') return;
-  
-//   if (event.target.classList.contains('rated')) {
-//     // event.target.classList.remove('rated');
-//   } else {
-//     Array.prototype.forEach.call(document.getElementsByClassName('rated'), function(el) {
-//       el.classList.remove('rated');
-//     });
-//     event.target.classList.add('rated');
-//   } 
-
-
-
 
 
 
